@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michael Cairns - Interactive Profile</title>
+    <!-- Chosen Palette: Subtle & Sophisticated -->
+    <!-- Application Structure Plan: The application is structured as a top-down narrative to tell a compelling professional story. It begins with a core philosophy (the 'why'), moves to high-impact, quantifiable results (the 'what'), explains a key process (the 'how'), showcases the tools and abilities (the 'with what'), and concludes with career history and credentials (the 'where'). This thematic flow is more engaging for a recruiter than a standard chronological resume, highlighting value upfront and providing context progressively. -->
+    <!-- Visualization & Content Choices: 
+        - Log4j Reduction: Goal: Inform. Method: Big Number + Chart.js Donut Chart. Justification: Immediately showcases a major quantitative achievement.
+        - PowerShell Savings: Goal: Inform. Method: Big Number callout. Justification: Simple, powerful metric that doesn't require a complex visual.
+        - Vulnerability Workflow: Goal: Organize. Method: HTML/CSS Flexbox diagram. Justification: Visually represents a core process and communication skill without relying on prohibited graphics libraries.
+        - Skills Assessment: Goal: Compare. Method: Chart.js Horizontal Bar Chart. Justification: Allows for easy comparison of multiple skills and provides interactivity through tooltips.
+        - Career History: Goal: Organize. Method: Styled HTML cards in a timeline format. Justification: More scannable and visually appealing than a dense text block.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            color: #4A6D8C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+        .kpi-chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 200px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        .timeline-item .timeline-content {
+            border-left: 3px solid #8AB4D4;
+            padding-left: 1.5rem;
+            margin-left: 1rem;
+        }
+        .timeline-item .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            background-color: #4A6D8C;
+            border: 3px solid white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl space-y-16">
+
+        <header class="text-center py-8">
+            <h1 class="text-4xl md:text-6xl font-black text-[#4A6D8C] mb-2">Michael J. Cairns</h1>
+            <p class="text-xl text-[#8AB4D4] font-medium">Intelligent Network Operations, Security, and Systems Administration</p>
+        </header>
+
+        <main class="space-y-20">
+
+            <section id="philosophy">
+                <div class="card text-center">
+                    <h2 class="text-2xl font-bold text-[#4A6D8C] mb-4">Core Philosophy</h2>
+                    <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-700">"There's always a better, more efficient way to solve a problem." This principle drives my passion for diving into complex systems, understanding their core, and building smarter, faster solutions. I thrive on leveraging modern tools to create impactful results and make technology work better for everyone.</p>
+                </div>
+            </section>
+            
+            <section id="impact">
+                <h2 class="text-3xl font-bold text-center text-[#4A6D8C] mb-8">Key Career Impacts</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12 text-gray-600">My focus is on delivering measurable improvements. Here are a couple of highlights where my work led to significant, tangible outcomes for the organization.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card flex flex-col items-center text-center">
+                        <h3 class="text-xl font-bold text-[#4A6D8C] mb-2">Log4j Vulnerability Reduction</h3>
+                        <p class="text-7xl font-black text-[#D4A28A]">43%</p>
+                        <div class="kpi-chart-container my-4">
+                            <canvas id="log4jChart"></canvas>
+                        </div>
+                        <p class="text-gray-700">Slashed the critical Log4j vulnerability backlog by coordinating stakeholder action, driven by insights from custom-built Power BI dashboards.</p>
+                    </div>
+                    <div class="card flex flex-col items-center text-center justify-center">
+                        <h3 class="text-xl font-bold text-[#4A6D8C] mb-2">Hardware Refresh Automation</h3>
+                        <p class="text-7xl font-black text-[#8AB4D4]">50%</p>
+                        <p class="text-5xl my-6">⏱️</p>
+                        <p class="text-gray-700">Cut requirements-gathering time in half by scripting PowerShell commands, streamlining the hardware refresh process for over 15 workstations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="workflow">
+                <h2 class="text-3xl font-bold text-center text-[#4A6D8C] mb-8">From Technical Data to Business Strategy</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12 text-gray-600">A core strength is translating complex technical findings into clear, actionable intelligence for leadership. This workflow demonstrates how I bridge the gap between raw data and strategic decision-making.</p>
+                <div class="card">
+                    <div class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0 md:space-x-4">
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3">🔎</div>
+                            <h4 class="font-bold text-lg text-[#4A6D8C]">1. Detect & Identify</h4>
+                            <p class="text-gray-600">Analyze vulnerabilities using enterprise tools like Splunk & Tenable.</p>
+                        </div>
+                        <div class="text-4xl text-[#8AB4D4] font-light transform md:rotate-0 rotate-90">&rarr;</div>
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3">📊</div>
+                            <h4 class="font-bold text-lg text-[#4A6D8C]">2. Analyze & Prioritize</h4>
+                            <p class="text-gray-600">Cross-reference CVEs with the CMDB in ServiceNow to assess impact.</p>
+                        </div>
+                        <div class="text-4xl text-[#8AB4D4] font-light transform md:rotate-0 rotate-90">&rarr;</div>
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3">🗣️</div>
+                            <h4 class="font-bold text-lg text-[#4A6D8C]">3. Translate & Visualize</h4>
+                            <p class="text-gray-600">Develop data-driven Power BI dashboards for clear reporting.</p>
+                        </div>
+                         <div class="text-4xl text-[#8AB4D4] font-light transform md:rotate-0 rotate-90">&rarr;</div>
+                        <div class="text-center flex-1">
+                            <div class="text-5xl mb-3">🎯</div>
+                            <h4 class="font-bold text-lg text-[#4A6D8C]">4. Report & Advise</h4>
+                            <p class="text-gray-600">Present findings and remediation status to executive leadership.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="skills">
+                <h2 class="text-3xl font-bold text-center text-[#4A6D8C] mb-8">Skills Showcase</h2>
+                <p class="text-center text-lg max-w-3xl mx-auto mb-12 text-gray-600">My expertise spans across several key areas of IT. This chart highlights my proficiency in the technologies and methodologies that drive my work. Hover over the bars for more detail.</p>
+                <div class="card">
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2 class="text-3xl font-bold text-center text-[#4A6D8C] mb-12">Career Journey</h2>
+                <div class="relative space-y-12">
+                     <div class="timeline-item relative">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-[#4A6D8C]">Network Engineering & Architecture Associate</h3>
+                            <p class="font-medium text-[#8AB4D4]">San Diego Gas & Electric (March 2025–Present)</p>
+                            <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
+                                <li>Managed and validated wireline inventory for the Telecom Expense Management system.</li>
+                                <li>Analyzed and refined vulnerability assignment rules in ServiceNow.</li>
+                                <li>Gained field experience with emergency infrastructure deployments.</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="timeline-item relative">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-[#4A6D8C]">Cybersecurity PMO and Armor Project Associate</h3>
+                            <p class="font-medium text-[#8AB4D4]">San Diego Gas & Electric (June 2024–March 2025)</p>
+                            <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
+                                <li>Reduced Log4j backlog by 43% through data analysis and stakeholder coordination.</li>
+                                <li>Leveraged generative AI to author strategic overviews for leadership.</li>
+                                <li>Conducted Living off the Land software analysis to identify unauthorized tools.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item relative">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3 class="text-xl font-bold text-[#4A6D8C]">IT Desktop Support Intern</h3>
+                            <p class="font-medium text-[#8AB4D4]">Glidewell Laboratories (June 2023–August 2023)</p>
+                            <ul class="list-disc list-inside mt-2 text-gray-700 space-y-1">
+                                <li>Scripted PowerShell commands to cut requirements-gathering time by 50%.</li>
+                                <li>Resolved level 2/3 tickets and managed hardware refreshes for Dell workstations.</li>
+                                <li>Presented key security insights to C-Suite executives.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center pt-12 mt-12 border-t border-gray-200">
+             <p class="text-lg font-bold text-[#4A6D8C]">Michael J. Cairns</p>
+             <p class="text-gray-600">949-697-3797 | mjc2600@gmail.com | linkedin.com/in/michael--cairns/</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                } else {
+                    currentLine += " " + words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const skillsCtx = document.getElementById('skillsChart').getContext('2d');
+        const rawSkillLabels = [
+            'Cross-Functional Communication & Reporting', 'Cybersecurity Analysis', 'Vulnerability Management', 'Data-Driven Reporting (Power BI)',
+            'Network Engineering', 'Scripting & Automation (PowerShell, Python)', 'Enterprise Tooling (ServiceNow, Splunk)', 'IT Systems Administration'
+        ];
+        new Chart(skillsCtx, {
+            type: 'bar',
+            data: {
+                labels: rawSkillLabels.map(label => wrapLabel(label, 16)),
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [98, 90, 92, 95, 85, 88, 86, 80],
+                    backgroundColor: '#8AB4D4',
+                    borderColor: '#4A6D8C',
+                    borderWidth: 1,
+                    borderRadius: 4,
+                    barPercentage: 0.7,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: { display: false, beginAtZero: true },
+                    y: {
+                         grid: { display: false },
+                         ticks: { color: '#4A6D8C', font: { size: 14 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#4A6D8C',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            }
+        });
+
+        const log4jCtx = document.getElementById('log4jChart').getContext('2d');
+        new Chart(log4jCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Reduced', 'Remaining'],
+                datasets: [{
+                    data: [43.5, 56.5],
+                    backgroundColor: ['#8AB4D4', '#E8E8E8'],
+                    borderColor: 'white',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => `${context.label}: ${context.raw.toFixed(1)}%`
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
